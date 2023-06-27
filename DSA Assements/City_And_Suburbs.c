@@ -26,6 +26,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include<conio.h>
 
 // char *cityData[15][15];
 
@@ -141,41 +142,32 @@ int main()
     //     printf("%s, ", nodes[i]->data);
     // }
 
-    again:
 
-    char *corp1, *corp2;
+    char *corp1 = malloc(sizeof(char) * 100);
+    char *corp2 = malloc(sizeof(char) * 100);
 
-    int corpPos1, corpPos2;
+    int corpPos1, corpPos2, check=1;
 
+    
     printf("Enter Corporation 1: ");
     gets(corp1);
 
-    printf("Enter Corporation 1: ");
+    printf("Enter Corporation 2: ");
     gets(corp2);
 
     for(int i=0; i<15; i++)
     {
-        if(corp1 == nodes[i]->data)
+        if(strcmp(nodes[i]->data, corp1) == 0)
         {
             corpPos1 = i;
         }
-        if(corp2 == nodes[i]->data)
+        if(strcmp(nodes[i]->data, corp2) == 0)
         {
             corpPos2 = i;
         }
     }
 
     checkParent(corpPos1, corpPos2);
-
-
-    int check;
-
-    printf("Want to check again? (1 for yes)");
-    scanf("%d", &check);
-
-    if(check == 1)
-    goto again;
-
 
     return 0;
 }
