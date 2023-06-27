@@ -111,15 +111,71 @@ void addCity()
     addSuburbs((parentPos*2)+2);
 }
 
+void checkParent(int corpPos1, int corpPos2)
+{
+    if(((corpPos1-1)/2) == ((corpPos2-1)/2))
+    {
+        int pos = (corpPos1-1)/2;
+
+        printf("%s ,", nodes[pos]->data);
+
+    }
+
+    corpPos1 = (corpPos1-1)/2;
+    corpPos2 = (corpPos2-1)/2;
+
+    if(corpPos1 && corpPos2)
+    {
+        checkParent(corpPos1, corpPos2);
+    }
+
+}
+
 
 int main()
 {
     addCity();
 
+    // for(int i=0; i<15; i++)
+    // {
+    //     printf("%s, ", nodes[i]->data);
+    // }
+
+    again:
+
+    char *corp1, *corp2;
+
+    int corpPos1, corpPos2;
+
+    printf("Enter Corporation 1: ");
+    gets(corp1);
+
+    printf("Enter Corporation 1: ");
+    gets(corp2);
+
     for(int i=0; i<15; i++)
     {
-        printf("%s, ", nodes[i]->data);
+        if(corp1 == nodes[i]->data)
+        {
+            corpPos1 = i;
+        }
+        if(corp2 == nodes[i]->data)
+        {
+            corpPos2 = i;
+        }
     }
+
+    checkParent(corpPos1, corpPos2);
+
+
+    int check;
+
+    printf("Want to check again? (1 for yes)");
+    scanf("%d", &check);
+
+    if(check == 1)
+    goto again;
+
 
     return 0;
 }
